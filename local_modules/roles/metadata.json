@@ -1,0 +1,14 @@
+{
+  "name": "roles",
+  "version": "0.0.1",
+  "author": "OiSiS",
+  "summary": "Roles module for Kubernetes HA",
+  "license": "Apache-2.0",
+  "source": "git://github.com/oisis/kubernetes-ha.git",
+  "project_page": "https://github.com/oisis/kubernetes-ha",
+  "issues_url": "https://github.com/oisis/kubernetes-ha/issues",
+  "dependencies": [
+    {"name":"puppetlabs-stdlib","version_requirement":">= 2.2.1"}
+  ],
+  "data_provider": null
+}
