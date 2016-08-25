@@ -27,3 +27,4 @@ mkmf.log
 .tmp/
 .librarian/
 Puppetfile.lock
+modules/
