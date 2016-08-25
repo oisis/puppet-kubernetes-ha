@@ -12,9 +12,8 @@ Roles can be found in `hieradata/roles` and profiles are in `modules/profiles`.
 - 2x Kuberentes nodes
 
 ### Clone this repo:
-```git clone https://github.com/oisis/kubernetes-ha
-cd /kubernetes-ha
-```
+```git clone https://github.com/oisis/kubernetes-ha```
+```cd /kubernetes-ha```
 
 ### Install librarian-puppet:
 ```gem install librarian-puppet```
