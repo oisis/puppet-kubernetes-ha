@@ -38,9 +38,9 @@ SCRIPT
       puppet.hiera_config_path = "hiera.yaml"
       puppet.environment = "vagrant"
       puppet.facter = {
-        "system_role" => "etcd",
-        "system_profile" => "etcd",
-        "environment" => "vagrant",
+        "environment"     => "vagrant",
+        "system_role"     => "etcd",
+        "system_profile"  => "etcd",
       }
     end
     config.vm.provider :virtualbox do |vb|
@@ -59,9 +59,9 @@ SCRIPT
       puppet.hiera_config_path = "hiera.yaml"
       puppet.environment = "vagrant"
       puppet.facter = {
-        "system_role" => "etcd",
-        "system_profile" => "etcd",
-        "environment" => "vagrant",
+        "environment"     => "vagrant",
+        "system_role"     => "etcd",
+        "system_profile"  => "etcd",
       }
     end
     config.vm.provider :virtualbox do |vb|
@@ -80,9 +80,9 @@ SCRIPT
       puppet.hiera_config_path = "hiera.yaml"
       puppet.environment = "vagrant"
       puppet.facter = {
-        "system_role" => "etcd",
-        "system_profile" => "etcd",
-        "environment" => "vagrant",
+        "environment"     => "vagrant",
+        "system_role"     => "etcd",
+        "system_profile"  => "etcd",
       }
     end
     config.vm.provider :virtualbox do |vb|
@@ -101,9 +101,11 @@ SCRIPT
       puppet.manifest_file = 'site.pp'
       puppet.working_directory = "/vagrant"
       puppet.hiera_config_path = "hiera.yaml"
+      puppet.environment = "vagrant"
       puppet.facter = {
-        "role"    => "k8s_master",
-        "profile" => "k8s1",
+        "environment"     => "vagrant",
+        "system_role"     => "k8s_master",
+        "system_profile"  => "k8s_master",
       }
     end
     config.vm.provider :virtualbox do |vb|
@@ -120,9 +122,11 @@ SCRIPT
       puppet.manifest_file = 'site.pp'
       puppet.working_directory = "/vagrant"
       puppet.hiera_config_path = "hiera.yaml"
+      puppet.environment = "vagrant"
       puppet.facter = {
-        "role"    => "k8s_master",
-        "profile" => "k8s2",
+        "environment"     => "vagrant",
+        "system_role"     => "k8s_master",
+        "system_profile"  => "k8s_master",
       }
     end
     config.vm.provider :virtualbox do |vb|
