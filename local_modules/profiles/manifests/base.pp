@@ -6,26 +6,21 @@
 #
 class profiles::base () {
 
-#  profiles::register_profile{ 'base': order => 1, }
-
-  #
   # Ensure we have a yum repo first before we intall rpm packages
-  #
   Yumrepo <| |> -> Package <| |>
 
-  include ::stdlib
   include ::sudo
-#  include ::ssh
+  include ::stdlib
+  include ::chrony
   include ::selinux
 #  include ::users
-  include ::chrony
+#  include ::ssh
 
   # get some usual helpers installed
   create_resources(package, hiera('gemlist', {}))
   create_resources(package, hiera('applist', {}))
 
-  ### This distributes the custom fact to the host(-pluginsync)
-  ### on using puppet apply
+  ### This distributes the custom fact to the host(-pluginsync) on using puppet apply
   # lint:ignore:puppet_url_without_modules
   file { $::settings::libdir:
     ensure  => directory,
