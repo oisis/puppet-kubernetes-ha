@@ -13,6 +13,7 @@ Roles can be found in `hieradata/roles` and profiles are in `modules/profiles`.
 
 ### Clone this repo:
 ```git clone https://github.com/oisis/kubernetes-ha```
+
 ```cd /kubernetes-ha```
 
 ### Install librarian-puppet:
@@ -21,4 +22,5 @@ Roles can be found in `hieradata/roles` and profiles are in `modules/profiles`.
 ### Install puppet modules
 ```librarian-puppet install```
 
-###
+### Run Vagrant
+```vagrant up```
