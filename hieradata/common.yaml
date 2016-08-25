@@ -1,0 +1,45 @@
+---
+# Packages list to install on all machines:
+applist:
+  'mc':
+    ensure: 'installed'
+  'screen':
+    ensure: 'installed'
+  'bind-utils':
+    ensure: 'installed'
+  'htop':
+    ensure: 'installed'
+  'telnet':
+    ensure: 'installed'
+  'wget':
+    ensure: 'installed'
+  'epel-release':
+    ensure: 'installed'
+  'vim':
+    ensure: 'installed'
+
+# GEMs list to install on all machines:
+gemlist:
+  'hiera-regex':
+    provider: 'gem'
+  'hiera-eyaml':
+    provider: 'gem'
+
+# NTPd configuration:
+chrony::interfaces:
+  - '127.0.0.1'
+chrony::restrict:
+ - '127.0.0.1'
+chrony::package_ensure: 'present'
+chrony::enable: true
+chrony::servers:
+  - 0.pl.pool.ntp.org iburst
+  - 1.pl.pool.ntp.org iburst
+
+# SeLinux configuration:
+selinux::mode: 'permissive'
+
+# Sudo users configuration:
+sudo::configs:
+  'wheel':
+    content: "%wheel  ALL=(ALL)       NOPASSWD: ALL \n"

@@ -1,0 +1,23 @@
+---
+:backends:
+  - yaml
+  - eyaml
+
+:yaml:
+  :datadir: hieradata
+
+:eyaml:
+  :datadir: 'hieradata'
+  :encrypt_method: 'kms'
+
+:merge_behavior: native
+
+:logger: puppet
+
+:hierarchy:
+  - environment/%{::environment}/profiles/%{::system_profile}
+  - environment/%{::environment}/roles/%{::system_role}
+  - profiles/%{::system_profile}
+  - roles/%{::system_role}
+  - osfamily/%{::osfamily}
+  - common

@@ -1,0 +1,14 @@
+---
+etcd::etcd_name: '%{::hostname}'
+etcd::listen_client_urls: 'http://0.0.0.0:2379,http://0.0.0.0:4001'
+etcd::listen_peer_urls: 'http://0.0.0.0:2380,http://0.0.0.0:7001'
+etcd::initial_advertise_peer_urls: "http://%{::ipaddress_eth1}:2380"
+etcd::advertise_client_urls: "http://%{::ipaddress_eth1}:2379,http://%{::ipaddress_eth1}:4001"
+etcd::initial_cluster: ['etcd1=http://etcd1.example.com:2380','etcd2=http://etcd2.example.com:2380','etcd3=http://etcd3.example.com:2380']
+etcd::data_dir: '/var/lib/etcd/%{::hostname}.etcd'
+etcd::ensure: 'present'
+etcd::etcd_packagename: 'etcd'
+etcd::service_ensure: 'running'
+etcd::proxy: "off"
+profiles::etcd::cluster_domain: '/example.com/network/config'
+profiles::etcd::cluster_network: '10.1.0.0/16'
