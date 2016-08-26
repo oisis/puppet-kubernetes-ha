@@ -4,6 +4,11 @@
 # === Author
 # OiSiS (https://github.com/oisis/)
 #
-class profiles::k8s (){
-  include ::kubernetes_master
+class profiles::k8s_master (){
+  include flannel
+  include docker
+
+  anchor { 'k8s_master::begin': } ->
+  Class['::flannel']              ->
+  anchor { 'k8s_master::end': }
 }
