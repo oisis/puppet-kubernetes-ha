@@ -1,9 +1,10 @@
 ---
 docker::ensure: 'present'
-docker::version: 'latest'
 docker::service_state: 'running'
-docker::service_enable: 'true'
-docker::package_name: 'docker'
+docker::service_enable: true
+docker::log_level: 'info'
+docker::iptables: true
+docker::ip_masq: true
 flannel::service_state: 'running'
 flannel::service_enable: true
 flannel::manage_docker: true
