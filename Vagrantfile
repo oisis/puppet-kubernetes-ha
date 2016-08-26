@@ -137,15 +137,17 @@ SCRIPT
   config.vm.define "node1" do |config|
     config.vm.hostname = "k8s-node1.example.com"
     config.vm.provision "shell", inline: $fill_hosts
-    config.vm.network :private_network,ip: "192.168.0.6"
+    config.vm.network :private_network,ip: "192.168.0.20"
     config.vm.provision :puppet do |puppet|
       puppet.module_path = 'modules'
       puppet.manifest_file = 'site.pp'
       puppet.working_directory = "/vagrant"
       puppet.hiera_config_path = "hiera.yaml"
+      puppet.environment = "vagrant"
       puppet.facter = {
-        "role"    => "k8s_node",
-        "profile" => "k8s_node1",
+        "environment"     => "vagrant",
+        "system_role"     => "k8s_node",
+        "system_profile"  => "k8s_node",
       }
     end
     config.vm.provider :virtualbox do |vb|
@@ -156,15 +158,17 @@ SCRIPT
   config.vm.define "node2" do |config|
     config.vm.hostname = "k8s-node2.example.com"
     config.vm.provision "shell", inline: $fill_hosts
-    config.vm.network :private_network,ip: "192.168.0.7"
+    config.vm.network :private_network,ip: "192.168.0.21"
     config.vm.provision :puppet do |puppet|
       puppet.module_path = 'modules'
       puppet.manifest_file = 'site.pp'
       puppet.working_directory = "/vagrant"
       puppet.hiera_config_path = "hiera.yaml"
+      puppet.environment = "vagrant"
       puppet.facter = {
-        "role"    => "k8s_node",
-        "profile" => "k8s_node2",
+        "environment"     => "vagrant",
+        "system_role"     => "k8s_node",
+        "system_profile"  => "k8s_node",
       }
     end
     config.vm.provider :virtualbox do |vb|
