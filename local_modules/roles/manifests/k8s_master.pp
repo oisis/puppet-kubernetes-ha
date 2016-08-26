@@ -7,6 +7,4 @@
 class roles::k8s_master {
   include ::profiles::base
   include ::profiles::k8s_master
-  include ::profiles::flannel
-  include ::profiles::docker
 }
