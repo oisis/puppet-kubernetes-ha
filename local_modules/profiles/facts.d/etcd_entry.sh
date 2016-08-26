@@ -1,6 +1,6 @@
 #!/bin/bash
 
-HEALTH=`curl -s -L http://127.0.0.1:2379/health | python -mjson.tool | grep health | awk -F\" '{print $4}'`
+ETCDHEALTH=`curl -s -L http://127.0.0.1:2379/health | python -mjson.tool | grep health | awk -F\" '{print $4}'`
 if [ "$ETCDHEALTH" == "false" ]; then
     echo "etcd_health=error"
 else
