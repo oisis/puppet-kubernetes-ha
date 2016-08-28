@@ -30,16 +30,4 @@ class profiles::base () {
     backup  => false,
     noop    => false
   }
-
-  concat{ '/etc/sysconfig/systemProfile':
-    owner => 'root',
-    group => 'root',
-    mode  => '0644',
-  }
-
-  concat{ '/etc/sysconfig/systemRole':
-    owner => 'root',
-    group => 'root',
-    mode  => '0644',
-  }
 }
