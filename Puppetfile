@@ -25,8 +25,8 @@ forge "https://forgeapi.puppetlabs.com"
 # mod 'puppetlabs-apache', '0.6.0', :github_tarball => 'puppetlabs/puppetlabs-apache'
 
 # Local modules:
-mod 'profiles', :path => './local_modules/profiles'
-mod 'roles', :path => './local_modules/roles'
+mod 'oisis-profiles', :path => './local_modules/profiles'
+mod 'oisis-roles', :path => './local_modules/roles'
 
 # Puppet labs modules
 mod 'puppetlabs-stdlib'
