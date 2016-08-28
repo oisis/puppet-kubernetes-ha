@@ -6,7 +6,7 @@
 #
 class profiles::base () {
 
-  # Ensure we have a yum repo first before we intall rpm packages
+  # First yum repo then intall rpm packages
   Yumrepo <| |> -> Package <| |>
 
   include ::sudo
