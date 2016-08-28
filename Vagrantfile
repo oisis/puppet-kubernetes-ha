@@ -44,7 +44,7 @@ SCRIPT
       }
     end
     config.vm.provider :virtualbox do |vb|
-      vb.customize ["modifyvm", :id, "--memory", "256", "--cpus", 1, "--ioapic", "on", "--cpuexecutioncap", "50"]
+      vb.customize ["modifyvm", :id, "--memory", "512", "--cpus", 1, "--ioapic", "on", "--cpuexecutioncap", "50"]
     end
   end
 
@@ -65,7 +65,7 @@ SCRIPT
       }
     end
     config.vm.provider :virtualbox do |vb|
-      vb.customize ["modifyvm", :id, "--memory", "256", "--cpus", 1, "--ioapic", "on", "--cpuexecutioncap", "50"]
+      vb.customize ["modifyvm", :id, "--memory", "512", "--cpus", 1, "--ioapic", "on", "--cpuexecutioncap", "50"]
     end
   end
 
@@ -86,7 +86,7 @@ SCRIPT
       }
     end
     config.vm.provider :virtualbox do |vb|
-      vb.customize ["modifyvm", :id, "--memory", "256", "--cpus", 1, "--ioapic", "on", "--cpuexecutioncap", "50"]
+      vb.customize ["modifyvm", :id, "--memory", "512", "--cpus", 1, "--ioapic", "on", "--cpuexecutioncap", "50"]
     end
   end
 
