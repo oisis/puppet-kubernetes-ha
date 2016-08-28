@@ -13,10 +13,4 @@ class profiles::etcd (
   $cluster_network,
 ){
   include ::etcd
-  # Add etcd entry if does not exist
-  if $::etcd_health == 'ok' and $::etcd_key == "notfound" {
-    etcd_key { "$cluster_domain":
-      value   => "{ \"Network\": \"$cluster_network\", \"Backend\": { \"Type\": \"vxlan\", \"VNI\": 1 }}",
-    }
-  }
 }
