@@ -7,4 +7,9 @@
 class roles::k8s_master {
   include ::profiles::base
   include ::profiles::k8s_master
+
+  anchor {'roles::k8s_master:begin':} ->
+    Class['::profiles::base']         ->
+    Class['::profiles::k8s_master']   ->
+  anchor {'roles::k8s_master:end':}
 }
