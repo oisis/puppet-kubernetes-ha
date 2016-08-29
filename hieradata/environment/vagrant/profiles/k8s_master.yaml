@@ -12,3 +12,37 @@ flannel::etcd_endpoints: ['http://etcd1.example.com:2379','http://etcd2.example.
 flannel::etcd_prefix: '/example.com/network'
 flannel::network: '10.1.0.0/16'
 flannel::iface: 'eth1'
+
+kubernetes::kubernetes_role: 'master'
+kubernetes::manage_repo: 'true'
+kubernetes::package_name_master: 'kubernetes-master'
+kubernetes::package_ensure: 'latest'
+kubernetes::master::apiserver::apisrv_service_cluster_ip_range: '10.1.0.0/16'
+kubernetes::master::apiserver::apisrv_etcd_servers: 'http://etcd1.example.com:2379'
+kubernetes::master::apiserver::apisrv_etcd_prefix: '/cluster.local/registry'
+kubernetes::master::apiserver::apisrv_kubelet_port: '10250'
+kubernetes::master::apiserver::apisrv_insecure_bind_address: '0.0.0.0'
+kubernetes::master::apiserver::apisrv_insecure_port: '8080'
+kubernetes::master::apiserver::apisrv_service_account_key_file: '/etc/ssl/certs/serviceaccount.key'
+kubernetes::master::apiserver::apisrv_runtime_config: ' --runtime-config=v1,extensions/v1beta1=true'
+kubernetes::master::apiserver::apisrv_admission_control: ['NamespaceLifecycle', 'NamespaceExists', 'LimitRanger', 'SecurityContextDeny', 'ServiceAccount', 'ResourceQuota' ]
+kubernetes::master::apiserver::apisrv_client_ca_file: "/srv/kubernetes/ca.crt"
+kubernetes::master::apiserver::apisrv_tls_cert_file: "/srv/kubernetes/kubernetes-master.crt"
+kubernetes::master::apiserver::apisrv_tls_private_key_file: "/srv/kubernetes/kubernetes-master.key"
+kubernetes::master::controller_manager::conman_service_ensure: 'running'
+kubernetes::master::controller_manager::conman_service_enable: 'true'
+kubernetes::master::controller_manager::conman_address: '0.0.0.0'
+kubernetes::master::controller_manager::conman_service_account_private_key_file: '/etc/ssl/certs/serviceaccount.key'
+kubernetes::master::controller_manager::conman_master: 'http://k8s1.example.com:8080'
+kubernetes::master::controller_manager::conman_leader_elect: 'true'
+kubernetes::master::scheduler::scheduler_service_ensure: 'running'
+kubernetes::master::scheduler::scheduler_service_enable: 'true'
+kubernetes::master::scheduler::scheduler_address: '0.0.0.0'
+kubernetes::master::scheduler::scheduler_master: 'http://k8s1.example.com:8080'
+kubernetes::master::scheduler::scheduler_leader_elect: 'true'
+kubernetes::node::kube_proxy::ensure: 'running'
+kubernetes::node::kube_proxy::enable: true
+kubernetes::node::kube_proxy::bind_address: '0.0.0.0'
+kubernetes::node::kube_proxy::healthz_bind_address: '0.0.0.0'
+kubernetes::node::kube_proxy::master: 'http://k8s1.example.com:8080'
+kubernetes::node::kube_proxy::proxy_mode: 'userspace'
