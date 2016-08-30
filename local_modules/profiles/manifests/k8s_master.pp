@@ -9,6 +9,7 @@ class profiles::k8s_master (){
   include ::profiles::flannel
   include ::profiles::docker
   include ::profiles::kubernetes
+  include ::profiles::k8s_certs
 
   Class['::profiles::etcd_key'] ->
   Class['::profiles::docker']   ->
