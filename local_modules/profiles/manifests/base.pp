@@ -7,7 +7,7 @@
 class profiles::base () {
 
   # First yum repo then intall rpm packages
-  Yumrepo <| |> -> Package <| |>
+#  Yumrepo <| |> -> Package <| |>
 
   include ::sudo
   include ::stdlib
