@@ -15,5 +15,7 @@ class profiles::k8s_certs () {
   exec{ 'generate_k8s_certs':
     command => "/bin/sh /root/generate_k8s_certs.sh",
     path    => '/bin:/sbin:/usr/bin:/usr/sbin',
+    user    => 'root',
+    onlyif  => 'test ! -f /etc/kubernetes/ssl/ca.pem',
   }
 }
