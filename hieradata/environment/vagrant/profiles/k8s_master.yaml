@@ -14,7 +14,7 @@ flannel::network: '10.1.0.0/16'
 flannel::iface: 'eth1'
 
 kubernetes::kubernetes_role: 'master'
-kubernetes::manage_repo: 'true'
+kubernetes::manage_repo: 'false'
 kubernetes::package_name_master: 'kubernetes-master'
 kubernetes::package_ensure: 'latest'
 kubernetes::master::apiserver::apisrv_service_cluster_ip_range: '10.1.0.0/16'
