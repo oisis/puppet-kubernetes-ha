@@ -11,8 +11,9 @@ class profiles::k8s_master (){
   include ::profiles::kubernetes
   include ::profiles::k8s_certs
 
-  Class['::profiles::etcd_key'] ->
-  Class['::profiles::docker']   ->
-  Class['::profiles::flannel']  ->
+  Class['::profiles::etcd_key']   ->
+  Class['::profiles::docker']     ->
+  Class['::profiles::flannel']    ->
+  Class['::profiles::k8s_certs']  ->
   Class['::profiles::kubernetes']
 }
