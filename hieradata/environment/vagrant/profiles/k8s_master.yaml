@@ -22,6 +22,9 @@ kubernetes::package_ensure: 'latest'
 kubernetes::package_name_master: 'kubernetes-master'
 kubernetes::kubernetes_role: 'master'
 
+# SSL configuration:
+kubernetes::generate_certs: 'true'
+
 # APIServer:
 kubernetes::master::apiserver::apisrv_insecure_bind_address: '0.0.0.0'
 kubernetes::master::apiserver::apisrv_insecure_port: '8080'
