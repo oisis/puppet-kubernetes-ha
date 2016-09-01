@@ -1,0 +1,30 @@
+### Configuration:
+# FQDN for loadbalancer?
+MASTER_DNS_NAME = "k8s1.example.com"
+# IP address k8s master in flanneld network
+K8S_SERVICE_IP = "10.1.0.1"
+# FQDN for k8s master
+MASTER_HOST = "192.168.0.10"
+# IP for k8s master
+MASTER_IP = "192.168.0.10"
+# LB IP address
+MASTER_LOADBALANCER_IP = "192.168.0.15"
+
+[req]
+req_extensions = v3_req
+distinguished_name = req_distinguished_name
+[req_distinguished_name]
+[ v3_req ]
+basicConstraints = CA:FALSE
+keyUsage = nonRepudiation, digitalSignature, keyEncipherment
+subjectAltName = @alt_names
+[alt_names]
+DNS.1 = kubernetes
+DNS.2 = kubernetes.default
+DNS.3 = kubernetes.default.svc
+DNS.4 = kubernetes.default.svc.cluster.local
+DNS.5 = ${MASTER_DNS_NAME}
+IP.1 = ${K8S_SERVICE_IP}
+IP.2 = ${MASTER_HOST}
+IP.3 = ${MASTER_IP}
+IP.4 = ${MASTER_LOADBALANCER_IP}
