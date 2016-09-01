@@ -23,7 +23,7 @@ kubernetes::package_name_master: 'kubernetes-master'
 kubernetes::kubernetes_role: 'master'
 
 # SSL configuration:
-kubernetes::generate_certs: 'true'
+kubernetes::generate_certs: 'false'
 
 # APIServer:
 kubernetes::master::apiserver::apisrv_insecure_bind_address: '0.0.0.0'
@@ -37,7 +37,7 @@ kubernetes::master::apiserver::apisrv_cert_dir: '/var/run/kubernetes'
 kubernetes::master::apiserver::apisrv_client_ca_file: '/etc/kubernetes/ssl/ca.pem'
 kubernetes::master::apiserver::apisrv_delete_collection_workers: '1'
 kubernetes::master::apiserver::apisrv_etcd_prefix: '/cluster.local/network'
-kubernetes::master::apiserver::apisrv_etcd_servers: 'http://etcd1.example.com:2379'
+kubernetes::master::apiserver::apisrv_etcd_servers: 'http://etcd.example.com:2379'
 kubernetes::master::apiserver::apisrv_event_ttl: '1h0m0s'
 kubernetes::master::apiserver::apisrv_ir_data_source: "influxdb"
 kubernetes::master::apiserver::apisrv_ir_dbname: 'k8s'
@@ -67,7 +67,6 @@ kubernetes::master::apiserver::apisrv_tls_cert_file: '/etc/kubernetes/ssl/apiser
 kubernetes::master::apiserver::apisrv_tls_private_key_file: '/etc/kubernetes/ssl/apiserver-key.pem'
 kubernetes::master::apiserver::apisrv_v: '0'
 kubernetes::master::apiserver::apisrv_watch_cache: 'true'
-#kubernetes::master::apiserver::apisrv_runtime_config: ' --runtime-config=v1,extensions/v1beta1=true'
 
 # Connection manager:
 kubernetes::master::controller_manager::conman_service_enable: 'true'
@@ -93,7 +92,7 @@ kubernetes::master::controller_manager::conman_leader_elect_renew_deadline: '10s
 kubernetes::master::controller_manager::conman_leader_elect_retry_period: '2s'
 kubernetes::master::controller_manager::conman_log_flush_frequency: '5s'
 kubernetes::master::controller_manager::conman_logtostderr: 'true'
-kubernetes::master::controller_manager::conman_master: 'http://k8s1.example.com:8080'
+kubernetes::master::controller_manager::conman_master: 'http://k8s.example.com:8080'
 kubernetes::master::controller_manager::conman_min_resync_period: '12h0m0s'
 kubernetes::master::controller_manager::conman_namespace_sync_period: '5m0s'
 kubernetes::master::controller_manager::conman_node_monitor_grace_period: '40s'
@@ -131,7 +130,7 @@ kubernetes::master::scheduler::scheduler_leader_elect_renew_deadline: '10s'
 kubernetes::master::scheduler::scheduler_leader_elect_retry_period: '2s'
 kubernetes::master::scheduler::scheduler_log_flush_frequency: '5s'
 kubernetes::master::scheduler::scheduler_logtostderr: 'true'
-kubernetes::master::scheduler::scheduler_master: 'http://k8s1.example.com:8080'
+kubernetes::master::scheduler::scheduler_master: 'http://k8s.example.com:8080'
 kubernetes::master::scheduler::scheduler_port: '10251'
 kubernetes::master::scheduler::scheduler_profiling: 'true'
 kubernetes::master::scheduler::scheduler_name: 'default-scheduler'
