@@ -27,3 +27,5 @@ nginx::nginx_vhosts:
   'k8s.example.com-8080':
     proxy: 'http://k8s_cluster_8080'
     listen_port: '8080'
+
+nginx::server_tokens: 'off'
