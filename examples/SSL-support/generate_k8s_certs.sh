@@ -1,7 +1,7 @@
 #!/bin/bash
-###################
-### Configuration:
-###################
+##################
+# Configuration: #
+##################
 # FQDN for loadbalancer?
 MASTER_DNS_NAME="k8s1.example.com"
 # IP address k8s master in flanneld network
@@ -14,6 +14,9 @@ MASTER_IP="192.168.0.10"
 MASTER_LOADBALANCER_IP="192.168.0.15"
 # Kubernetes nodes:
 WORKERS="k8s-node1.example.com k8s-node2.example.com"
+#############################################
+# End configuration part, do not edit below #
+#############################################
 
 # Create dirs:
 /bin/mkdir -p /root/certs/{apiserver-keys,worker-keys}
