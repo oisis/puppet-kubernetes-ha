@@ -8,8 +8,8 @@ class roles::loadbalancer () {
   include ::profiles::base
   include ::profiles::haproxy
 
-  anchor {'roles::k8s_node:begin':} ->
+  anchor {'roles::haproxy:begin':} ->
     Class['::profiles::base']       ->
-    Class['::profiles::k8s_node']   ->
-  anchor {'roles::k8s_node:end':}
+    Class['::profiles::haproxy']   ->
+  anchor {'roles::haproxy:end':}
 }
