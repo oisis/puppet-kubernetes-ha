@@ -15,9 +15,9 @@ $fill_hosts = <<SCRIPT
 cat > /etc/hosts <<EOF
 127.0.0.1 localhost localhost.localdomain localhost4 localhost4.localdomain4
 ::1       localhost localhost.localdomain localhost6 localhost6.localdomain6
-192.168.0.1 etcd.example.com
-192.168.0.1 k8s.example.com
-192.168.0.1 lb.example.com
+192.168.0.100 etcd.example.com
+192.168.0.100 k8s.example.com
+192.168.0.100 lb.example.com
 192.168.0.2 etcd1.example.com
 192.168.0.3 etcd2.example.com
 192.168.0.4 etcd3.example.com
@@ -31,7 +31,7 @@ SCRIPT
   config.vm.define "lb" do |config|
     config.vm.hostname = "lb.example.com"
     config.vm.provision "shell", inline: $fill_hosts
-    config.vm.network :private_network,ip: "192.168.0.1"
+    config.vm.network :private_network,ip: "192.168.0.100"
     config.vm.network :forwarded_port, guest: 1936, host: 1936
     config.vm.provision :puppet do |puppet|
       puppet.module_path = 'modules'
