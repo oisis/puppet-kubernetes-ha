@@ -1,0 +1,29 @@
+---
+nginx::nginx_upstreams:
+  'etcd_cluster_2379':
+    ensure: present
+    members:
+      - etcd1.example.com:2379
+      - etcd2.example.com:2379
+      - etcd3.example.com:2379
+  'etcd_cluster_4001':
+    ensure: present
+    members:
+      - etcd1.example.com:4001
+      - etcd2.example.com:4001
+      - etcd3.example.com:4001
+  'k8s_cluster_8080':
+    ensure: present
+    members:
+      - k8s1.example.com:8080
+      - k8s2.example.com:8080
+nginx::nginx_vhosts:
+  'etcd.example.com-2379':
+    proxy: 'http://etcd_cluster_2379'
+    listen_port: '2379'
+  'etcd.example.com-4001':
+    proxy: 'http://etcd_cluster_4001'
+    listen_port: '4001'
+  'k8s.example.com-8080':
+    proxy: 'http://k8s_cluster_8080'
+    listen_port: '8080'

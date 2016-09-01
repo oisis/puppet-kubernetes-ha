@@ -4,6 +4,7 @@
 # === Author
 # OiSiS (https://github.com/oisis/)
 #
-class profiles::flannel () {
-  include ::flannel
+class profiles::loadbalancer () {
+  include ::nginx
+
 }

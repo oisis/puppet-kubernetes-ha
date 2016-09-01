@@ -42,7 +42,7 @@ SCRIPT
       puppet.facter = {
         "environment"     => "vagrant",
         "system_role"     => "loadbalancer",
-        "system_profile"  => "haproxy",
+        "system_profile"  => "loadbalancer",
       }
     end
     config.vm.provider :virtualbox do |vb|

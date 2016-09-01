@@ -6,10 +6,10 @@
 #
 class roles::loadbalancer () {
   include ::profiles::base
-  include ::profiles::haproxy
+  include ::profiles::loadbalancer
 
   anchor {'roles::haproxy:begin':} ->
     Class['::profiles::base']       ->
-    Class['::profiles::haproxy']   ->
+    Class['::profiles::loadbalancer']   ->
   anchor {'roles::haproxy:end':}
 }
