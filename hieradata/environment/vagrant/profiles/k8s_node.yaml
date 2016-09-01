@@ -11,7 +11,7 @@ docker::ip_masq: true
 flannel::service_state: 'running'
 flannel::service_enable: true
 flannel::manage_docker: true
-flannel::etcd_endpoints: ['http://etcd.example.com:2379',]
+flannel::etcd_endpoints: ['http://etcd1.example.com:2379','http://etcd2.example.com:2379','http://etcd3.example.com:2379']
 flannel::etcd_prefix: '/example.com/network'
 flannel::network: '10.1.0.0/16'
 flannel::iface: 'eth1'
@@ -21,3 +21,25 @@ kubernetes::manage_repo: 'false'
 kubernetes::package_ensure: 'latest'
 kubernetes::package_name_master: 'kubernetes-node'
 kubernetes::kubernetes_role: 'node'
+
+# Kubelet options
+kubernetes::node::kubelet::kubelet_service_ensure: 'running'
+kubernetes::node::kubelet::kubelet_service_enable: true
+kubernetes::node::kubelet::kubelet_address: '0.0.0.0'
+kubernetes::node::kubelet::kubelet_healthz_bind_address: '0.0.0.0'
+kubernetes::node::kubelet::kubelet_port: 10250
+kubernetes::node::kubelet::kubelet_hostname_override: "%{::hostname}"
+kubernetes::node::kubelet::kubelet_reconcile_cidr: true
+kubernetes::node::kubelet::kubelet_api_servers: 'http://k8s.example.com:8080'
+kubernetes::node::kubelet::kubelet_register_node: true
+kubernetes::node::kubelet::kubelet_pod_cidr: '10.1.0.0/16'
+kubernetes::node::kubelet::kubelet_cluster_dns: '10.1.0.2'
+kubernetes::node::kubelet::kubelet_cluster_domain: 'cluster.local'
+
+# Kube Proxy options
+kubernetes::node::kube_proxy::kubeproxy_service_ensure: 'running'
+kubernetes::node::kube_proxy::kubeproxy_service_enable: true
+kubernetes::node::kube_proxy::kubeproxy_bind_address: '0.0.0.0'
+kubernetes::node::kube_proxy::kubeproxy_healthz_bind_address: '0.0.0.0'
+kubernetes::node::kube_proxy::kubeproxy_master: 'http://k8s.example.com:8080'
+kubernetes::node::kube_proxy::kubeproxy_proxy_mode: 'userspace'
