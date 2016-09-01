@@ -7,9 +7,9 @@
 class profiles::k8s_node (){
   include ::profiles::flannel
   include ::profiles::docker
+  include ::profiles::kubernetes
 
-  anchor { 'k8s_node::begin': }   ->
-    Class['::profiles::docker']   ->
-    Class['::profiles::flannel']  ->
-  anchor { 'k8s_node::end': }
+  Class['::profiles::docker']   ->
+  Class['::profiles::flannel']  ->
+  Class['::profiles::kubernetes']
 }
