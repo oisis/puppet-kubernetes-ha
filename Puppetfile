@@ -42,6 +42,8 @@ mod 'camptocamp-augeas'
 mod 'puppetlabs-concat'
 mod 'theforeman-concat_native'
 mod 'example42-puppi'
-mod 'puppet-kubernetes', :git => 'https://github.com/oisis/puppet-kubernetes'
+mod 'puppet-kubernetes',
+  :git => 'https://github.com/oisis/puppet-kubernetes',
+  :ref => 'master'
 mod 'puppetlabs-haproxy'
 mod 'jfryman-nginx'
