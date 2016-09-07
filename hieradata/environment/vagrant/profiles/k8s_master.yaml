@@ -23,6 +23,8 @@ kubernetes::package_name_master: 'kubernetes-master'
 kubernetes::kubernetes_role: 'master'
 
 # Kubernetes frontend - Cockpit
+# Open webbrowser: http://192.168.0.10:9090/
+# auth with: root/vagrant
 progiles::kubernetes::k8s_gui: 'true'
 
 # SSL configuration:
