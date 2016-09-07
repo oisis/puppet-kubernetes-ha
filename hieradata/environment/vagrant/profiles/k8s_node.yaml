@@ -28,7 +28,6 @@ kubernetes::node::kubelet::kubelet_service_enable: true
 kubernetes::node::kubelet::kubelet_address: '0.0.0.0'
 kubernetes::node::kubelet::kubelet_healthz_bind_address: '0.0.0.0'
 kubernetes::node::kubelet::kubelet_port: 10250
-kubernetes::node::kubelet::kubelet_hostname_override: "%{::hostname}"
 kubernetes::node::kubelet::kubelet_reconcile_cidr: true
 kubernetes::node::kubelet::kubelet_api_servers: 'http://k8s.example.com:8080'
 kubernetes::node::kubelet::kubelet_register_node: true
