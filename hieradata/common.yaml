@@ -18,6 +18,14 @@ applist:
   'vim':
     ensure: 'installed'
 
+k8s_frontend:
+  'cockpit':
+    ensure: 'installed'
+  'cockpit-docker':
+    ensure: 'installed'
+  'cockpit-kubernetes':
+    ensure: 'installed'
+
 # GEMs list to install on all machines:
 gemlist:
   'hiera-regex':
