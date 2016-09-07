@@ -22,6 +22,9 @@ kubernetes::package_ensure: 'latest'
 kubernetes::package_name_master: 'kubernetes-node'
 kubernetes::kubernetes_role: 'node'
 
+# Kubernetes frontend - Cockpit
+progiles::kubernetes::k8s_gui: 'true'
+
 # Kubelet options
 kubernetes::node::kubelet::kubelet_service_ensure: 'running'
 kubernetes::node::kubelet::kubelet_service_enable: true

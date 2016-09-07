@@ -22,6 +22,9 @@ kubernetes::package_ensure: 'latest'
 kubernetes::package_name_master: 'kubernetes-master'
 kubernetes::kubernetes_role: 'master'
 
+# Kubernetes frontend - Cockpit
+progiles::kubernetes::k8s_gui: 'true'
+
 # SSL configuration:
 kubernetes::generate_certs: 'false'
 
