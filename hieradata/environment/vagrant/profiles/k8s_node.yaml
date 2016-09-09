@@ -31,6 +31,7 @@ progiles::kubernetes::k8s_gui: 'true'
 kubernetes::node::kubelet::kubelet_service_ensure: 'running'
 kubernetes::node::kubelet::kubelet_service_enable: true
 kubernetes::node::kubelet::kubelet_address: '0.0.0.0'
+kubernetes::node::kubelet::kubelet_allow_privileged: true
 kubernetes::node::kubelet::kubelet_healthz_bind_address: '0.0.0.0'
 kubernetes::node::kubelet::kubelet_port: 10250
 kubernetes::node::kubelet::kubelet_reconcile_cidr: true
