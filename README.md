@@ -7,9 +7,15 @@ This repo works on a [roles/profile architecture](https://puppetlabs.com/present
 Roles can be found in `hieradata/roles` and profiles are in `modules/profiles`.
 
 ### Architecture:
+- 1x loadbalancer(Nginx)
 - 3x etcd server (cluster HA)
 - 2x Kubernetes master(Cluster HA)
 - 2x Kuberentes nodes
+
+### Hardware requirements for Vagrant:
+- around 4GB free RAM
+- 2-4 CPU cores
+- 20GB free HDD space
 
 ### Clone this repo:
 ```git clone https://github.com/oisis/kubernetes-ha```
