@@ -17,6 +17,9 @@ Roles can be found in `hieradata/roles` and profiles are in `modules/profiles`.
 - 2-4 CPU cores
 - 20GB free HDD space
 
+## Prepare Vagrant box for virtualbox 
+Use [this description](https://github.com/oisis/packer-centos7)
+
 ### Clone this repo:
 ```git clone https://github.com/oisis/kubernetes-ha```
 
