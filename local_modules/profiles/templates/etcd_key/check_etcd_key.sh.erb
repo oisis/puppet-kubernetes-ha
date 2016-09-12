@@ -1,0 +1,14 @@
+#!/bin/bash -e
+
+ETCD_PREFIX="<%= scope.function_hiera(['environment::vagrant::common::etcd_prefix']) %>"
+CLUSTER_IP_RANGE="<%= scope.function_hiera(['environment::vagrant::common::cluster_ip_range']) %>"
+ETCD_SERVER="<%= scope.function_hiera(['environment::vagrant::common::etcd_lb_address']) %>"
+
+CHECK_KEY=`curl -q -s http://$ETCD_SERVER:2379/v2/keys/$ETCD_PREFIX/network/config | python -mjson.tool | grep key | awk -F\" '{print $4}'`
+
+if [ "$CHECK_KEY" == "/$ETCD_PREFIX/network/config" ]; then
+    echo "Etcd key already exist, exiting..."
+else
+    echo "Etcd key does not exists, creating..."
+    /bin/curl -s -X PUT -d value="{\"Network\":\"$CLUSTER_IP_RANGE\",\"Backend\":{\"Type\":\"vxlan\",\"VNI\":1}}" http://$ETCD_SERVER:2379/v2/keys/$ETCD_PREFIX/network/config > /dev/null
+fi

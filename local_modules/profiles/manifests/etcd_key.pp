@@ -5,7 +5,14 @@
 # OiSiS (https://github.com/oisis/)
 #
 class profiles::etcd_key (){
-  exec{ 'create_etcd_entry':
-    command   => "/bin/curl -X PUT -d \"value={\\\"Network\\\":\\\"10.1.0.0/16\\\",\\\"Backend\\\":{\\\"Type\\\":\\\"vxlan\\\",\\\"VNI\\\":1}}\" \"http://etcd1.example.com:2379/v2/keys/cluster.local/network/config\""
+  file{ '/root/check_etcd_key.sh':
+    ensure  => 'file',
+    owner   => 'root',
+    group   => 'root',
+    mode    => '0700',
+    content => template("${module_name}/etcd_key/check_etcd_key.sh.erb"),
+  } ->
+  exec{ 'check_etcd_key.sh':
+    command   => "/root/check_etcd_key.sh"
   }
 }
