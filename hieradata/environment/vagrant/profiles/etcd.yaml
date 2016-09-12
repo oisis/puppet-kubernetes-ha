@@ -10,5 +10,9 @@ etcd::ensure: 'present'
 etcd::etcd_packagename: 'etcd'
 etcd::service_ensure: 'running'
 etcd::proxy: "off"
-profiles::etcd::cluster_domain: '/example.com/network/config'
-profiles::etcd::cluster_network: '10.1.0.0/16'
+
+
+
+#common part, DO NOT EDIT!!!!
+profiles::etcd::cluster_network: "%{hiera('environment::vagrant::common::cluster_ip_range')}"
+#profiles::etcd::cluster_domain: "/%{hiera('environment::vagrant::common::cluster_domain')}/network/config"
