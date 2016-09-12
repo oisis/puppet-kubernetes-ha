@@ -11,8 +11,6 @@ docker::ip_masq: true
 flannel::service_state: 'running'
 flannel::service_enable: true
 flannel::manage_docker: true
-flannel::etcd_endpoints: ['http://etcd.example.com:2379']
-flannel::etcd_prefix: '/cluster.local/network'
 flannel::iface: 'eth1'
 
 # Kubernetes Repo mgmt and server role
@@ -25,11 +23,6 @@ kubernetes::kubernetes_role: 'master'
 # Open webbrowser: http://192.168.0.10:9090/
 # auth with: root/vagrant
 progiles::kubernetes::k8s_gui: 'true'
-
-# Script to setup etcd key:
-profiles::etcd_key::etcd_prefix: 'cluster.local'
-profiles::etcd_key::cluster_ip_range: '10.1.0.0/16'
-profiles::etcd_key::etcd_lb_address: 'k8s.example.com'
 
 # SSL configuration:
 kubernetes::generate_certs: 'false'
@@ -45,8 +38,6 @@ kubernetes::master::apiserver::apisrv_bind_address: '0.0.0.0'
 kubernetes::master::apiserver::apisrv_cert_dir: '/var/run/kubernetes'
 kubernetes::master::apiserver::apisrv_client_ca_file: '/etc/kubernetes/ssl/ca.pem'
 kubernetes::master::apiserver::apisrv_delete_collection_workers: '1'
-kubernetes::master::apiserver::apisrv_etcd_prefix: '/cluster.local/network'
-kubernetes::master::apiserver::apisrv_etcd_servers: 'http://etcd.example.com:2379'
 kubernetes::master::apiserver::apisrv_event_ttl: '1h0m0s'
 kubernetes::master::apiserver::apisrv_ir_data_source: "influxdb"
 kubernetes::master::apiserver::apisrv_ir_dbname: 'k8s'
@@ -144,9 +135,17 @@ kubernetes::master::scheduler::scheduler_name: 'default-scheduler'
 kubernetes::master::scheduler::scheduler_stderrthreshold: '2'
 kubernetes::master::scheduler::scheduler_v: '0'
 
-
-#common part, DO NOT EDIT!!!!
-kubernetes::master::apiserver::apisrv_service_cluster_ip_range: "%{hiera('environment::vagrant::common::cluster_ip_range')}"
+################################
+# common part, DO NOT EDIT!!!! #
+################################
 flannel::network: "%{hiera('environment::vagrant::common::cluster_ip_range')}"
+flannel::etcd_prefix: "/%{hiera('environment::vagrant::common::etcd_prefix')}/network"
+flannel::etcd_endpoints: ["http://%{hiera('environment::vagrant::common::etcd_lb_address')}:2379"]
+profiles::etcd_key::etcd_prefix: "%{hiera('environment::vagrant::common::etcd_prefix')}"
+profiles::etcd_key::cluster_ip_range: "%{hiera('environment::vagrant::common::cluster_ip_range')}"
+profiles::etcd_key::etcd_lb_address: "%{hiera('environment::vagrant::common::etcd_lb_address')}"
+kubernetes::master::apiserver::apisrv_service_cluster_ip_range: "%{hiera('environment::vagrant::common::cluster_ip_range')}"
 kubernetes::master::controller_manager::conman_master: "http://%{hiera('environment::vagrant::common::k8s_lb_address')}:8080"
 kubernetes::master::scheduler::scheduler_master: "http://%{hiera('environment::vagrant::common::k8s_lb_address')}:8080"
+kubernetes::master::apiserver::apisrv_etcd_prefix: "/%{hiera('environment::vagrant::common::etcd_prefix')}/network"
+kubernetes::master::apiserver::apisrv_etcd_servers: "http://%{hiera('environment::vagrant::common::etcd_lb_address')}:2379"
