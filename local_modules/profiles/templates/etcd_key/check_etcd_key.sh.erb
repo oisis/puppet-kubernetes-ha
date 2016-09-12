@@ -1,8 +1,8 @@
 #!/bin/bash -e
 
-ETCD_PREFIX="<%= scope.function_hiera(['environment::vagrant::common::etcd_prefix']) %>"
-CLUSTER_IP_RANGE="<%= scope.function_hiera(['environment::vagrant::common::cluster_ip_range']) %>"
-ETCD_SERVER="<%= scope.function_hiera(['environment::vagrant::common::etcd_lb_address']) %>"
+ETCD_PREFIX="<%= scope.function_hiera(['profiles::etcd_key::etcd_prefix']) %>"
+CLUSTER_IP_RANGE="<%= scope.function_hiera(['profiles::etcd_key::cluster_ip_range']) %>"
+ETCD_SERVER="<%= scope.function_hiera(['profiles::etcd_key::etcd_lb_address']) %>"
 
 CHECK_KEY=`curl -q -s http://$ETCD_SERVER:2379/v2/keys/$ETCD_PREFIX/network/config | python -mjson.tool | grep key | awk -F\" '{print $4}'`
 

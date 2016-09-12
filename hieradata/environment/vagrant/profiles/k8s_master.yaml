@@ -11,9 +11,8 @@ docker::ip_masq: true
 flannel::service_state: 'running'
 flannel::service_enable: true
 flannel::manage_docker: true
-flannel::etcd_endpoints: ['http://etcd1.example.com:2379','http://etcd2.example.com:2379','http://etcd3.example.com:2379']
-flannel::etcd_prefix: '/example.com/network'
-flannel::network: '10.1.0.0/16'
+flannel::etcd_endpoints: ['http://etcd.example.com:2379']
+flannel::etcd_prefix: '/cluster.local/network'
 flannel::iface: 'eth1'
 
 # Kubernetes Repo mgmt and server role
@@ -27,13 +26,17 @@ kubernetes::kubernetes_role: 'master'
 # auth with: root/vagrant
 progiles::kubernetes::k8s_gui: 'true'
 
+# Script to setup etcd key:
+profiles::etcd_key::etcd_prefix: 'cluster.local'
+profiles::etcd_key::cluster_ip_range: '10.1.0.0/16'
+profiles::etcd_key::etcd_lb_address: 'k8s.example.com'
+
 # SSL configuration:
 kubernetes::generate_certs: 'false'
 
 # APIServer:
 kubernetes::master::apiserver::apisrv_insecure_bind_address: '0.0.0.0'
 kubernetes::master::apiserver::apisrv_insecure_port: '8080'
-kubernetes::master::apiserver::apisrv_service_cluster_ip_range: '10.1.0.0/16'
 kubernetes::master::apiserver::apisrv_admission_control: ['NamespaceLifecycle', 'NamespaceExists', 'LimitRanger', 'SecurityContextDeny', 'ServiceAccount', 'ResourceQuota' ]
 kubernetes::master::apiserver::apisrv_count: '1'
 kubernetes::master::apiserver::apisrv_authorization_mode: 'AlwaysAllow'
@@ -98,7 +101,6 @@ kubernetes::master::controller_manager::conman_leader_elect_renew_deadline: '10s
 kubernetes::master::controller_manager::conman_leader_elect_retry_period: '2s'
 kubernetes::master::controller_manager::conman_log_flush_frequency: '5s'
 kubernetes::master::controller_manager::conman_logtostderr: 'true'
-kubernetes::master::controller_manager::conman_master: 'http://k8s.example.com:8080'
 kubernetes::master::controller_manager::conman_min_resync_period: '12h0m0s'
 kubernetes::master::controller_manager::conman_namespace_sync_period: '5m0s'
 kubernetes::master::controller_manager::conman_node_monitor_grace_period: '40s'
@@ -136,9 +138,15 @@ kubernetes::master::scheduler::scheduler_leader_elect_renew_deadline: '10s'
 kubernetes::master::scheduler::scheduler_leader_elect_retry_period: '2s'
 kubernetes::master::scheduler::scheduler_log_flush_frequency: '5s'
 kubernetes::master::scheduler::scheduler_logtostderr: 'true'
-kubernetes::master::scheduler::scheduler_master: 'http://k8s.example.com:8080'
 kubernetes::master::scheduler::scheduler_port: '10251'
 kubernetes::master::scheduler::scheduler_profiling: 'true'
 kubernetes::master::scheduler::scheduler_name: 'default-scheduler'
 kubernetes::master::scheduler::scheduler_stderrthreshold: '2'
 kubernetes::master::scheduler::scheduler_v: '0'
+
+
+#common part, DO NOT EDIT!!!!
+kubernetes::master::apiserver::apisrv_service_cluster_ip_range: "%{hiera('environment::vagrant::common::cluster_ip_range')}"
+flannel::network: "%{hiera('environment::vagrant::common::cluster_ip_range')}"
+kubernetes::master::controller_manager::conman_master: "http://%{hiera('environment::vagrant::common::k8s_lb_address')}:8080"
+kubernetes::master::scheduler::scheduler_master: "http://%{hiera('environment::vagrant::common::k8s_lb_address')}:8080"
