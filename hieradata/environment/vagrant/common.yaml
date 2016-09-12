@@ -1,0 +1,2 @@
+---
+environment::vagrant::common::cluster_ip_range: '10.1.0.0/16'

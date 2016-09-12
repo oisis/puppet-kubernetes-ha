@@ -17,6 +17,7 @@
 :hierarchy:
   - environment/%{::environment}/profiles/%{::system_profile}
   - environment/%{::environment}/roles/%{::system_role}
+  - environment/%{::environment}/common
   - profiles/%{::system_profile}
   - roles/%{::system_role}
   - osfamily/%{::osfamily}
