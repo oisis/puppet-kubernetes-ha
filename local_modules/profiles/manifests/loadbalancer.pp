@@ -6,5 +6,4 @@
 #
 class profiles::loadbalancer () {
   include ::nginx
-
 }
