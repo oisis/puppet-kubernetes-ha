@@ -12,9 +12,10 @@ class profiles::k8s_master::namespaces (
   define create_namespaces{
     exec { "/bin/kubectl create namespace $title":
       unless  => "/bin/kubectl get namespaces | /bin/grep $title",
+      require => Service['kube-apiserver']
     }
   }
-  
+
   if $k8s_create_namespaces == 'true' {
     create_namespaces { $k8s_namespaces: }
   }
