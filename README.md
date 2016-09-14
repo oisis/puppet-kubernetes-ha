@@ -36,7 +36,7 @@ Please use [this description](https://github.com/oisis/packer-centos7) to do it.
 
 ### Open Cockpit:
 Open in webbrowser this url:
-```http://192.168.0.10:9090/```
+[http://192.168.0.10:9090/](http://192.168.0.10:9090/)
 
 login: root
 password: vagrant
