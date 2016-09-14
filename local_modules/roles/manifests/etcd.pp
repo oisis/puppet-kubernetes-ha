@@ -5,11 +5,9 @@
 # OiSiS (https://github.com/oisis/)
 #
 class roles::etcd {
-  include profiles::base
-  include profiles::etcd
+  include ::profiles::base
+  include ::profiles::etcd
 
-  anchor {'roles::etcd:begin':}  ->
-    Class['::profiles::base']   ->
-    Class['::profiles::etcd']   ->
-  anchor {'roles::etcd:end':}
+  Class['::profiles::base'] ->
+  Class['::profiles::etcd']
 }

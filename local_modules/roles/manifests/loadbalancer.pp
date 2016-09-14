@@ -8,6 +8,6 @@ class roles::loadbalancer () {
   include ::profiles::base
   include ::profiles::loadbalancer
 
-  Class['::profiles::base']       ->
+  Class['::profiles::base'] ->
   Class['::profiles::loadbalancer']
 }

@@ -5,5 +5,5 @@
 # OiSiS (https://github.com/oisis/)
 #
 class roles::base {
-  include profiles::base
+  include ::profiles::base
 }
