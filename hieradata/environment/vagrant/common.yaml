@@ -1,9 +1,19 @@
 ---
+# Common k8s configuration part:
 environment::vagrant::common::cluster_ip_range: '10.1.0.0/16'
 environment::vagrant::common::k8s_lb_address: 'k8s.example.com'
 environment::vagrant::common::etcd_lb_address: 'k8s.example.com'
 environment::vagrant::common::etcd_nodes: ['http://etcd.example.com:2379']
 environment::vagrant::common::etcd_prefix: 'cluster.local'
+
+# Kubernetes frontend - Cockpit
+# Open webbrowser: http://192.168.0.10:9090/
+# auth with: root/vagrant
+progiles::kubernetes::k8s_gui: 'true'
+
+# SSL configuration:
+kubernetes::generate_certs: 'false'
+
 
 # Create kubernetes namespaces
 progiles::kubernetes::k8s_create_namespaces: 'true'
