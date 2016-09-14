@@ -20,11 +20,12 @@ progiles::kubernetes::k8s_namespaces:
   - 'kube-system'
   - 'development'
   - 'production'
-
 # Setup namespaces hardware limits
 
-# Setup DNS inside cluster:
+# Setup and run DNS server inside k8s cluster:
 
-# Run GlusterFS server
+# Setup and run GlusterFS server for PersistanceVolumes
 
-# Setup PersistanceVolumes
+# Setup and run PersistanceVolumes for pods
+
+# Setup and run LoadBalancer(pods entry point)
