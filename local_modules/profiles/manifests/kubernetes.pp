@@ -8,6 +8,7 @@ class profiles::kubernetes (
   $k8s_gui = hiera('progiles::kubernetes::k8s_gui'),
 ){
   include ::kubernetes
+  include ::profiles::k8s_master::namespaces
 
   if $k8s_gui == 'true'{
     create_resources(package, hiera('k8s_frontend', {}))
