@@ -5,7 +5,7 @@
 # OiSiS (https://github.com/oisis/)
 #
 class profiles::kubernetes (
-  $k8s_gui = hiera('progiles::kubernetes::k8s_gui'),
+  $k8s_gui = hiera('profiles::kubernetes::k8s_gui'),
 ){
   include ::kubernetes
 

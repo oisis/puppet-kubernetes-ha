@@ -22,7 +22,7 @@ kubernetes::kubernetes_role: 'node'
 # Kubernetes frontend - Cockpit
 # Open webbrowser: http://192.168.0.20:9090/
 # auth with: root/vagrant
-progiles::kubernetes::k8s_gui: 'true'
+profiles::kubernetes::k8s_gui: 'true'
 
 # Kubelet options
 kubernetes::node::kubelet::kubelet_service_ensure: 'running'

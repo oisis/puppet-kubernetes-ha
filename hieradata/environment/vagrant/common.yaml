@@ -9,14 +9,14 @@ environment::vagrant::common::etcd_prefix: 'cluster.local'
 # Kubernetes frontend - Cockpit
 # Open webbrowser: http://192.168.0.10:9090/
 # auth with: root/vagrant
-progiles::kubernetes::k8s_gui: 'true'
+profiles::kubernetes::k8s_gui: 'true'
 
 # SSL configuration:
 kubernetes::generate_certs: 'false'
 
 # Create kubernetes namespaces
-progiles::kubernetes::k8s_create_namespaces: 'true'
-progiles::kubernetes::k8s_namespaces:
+profiles::kubernetes::k8s_create_namespaces: 'true'
+profiles::kubernetes::k8s_namespaces:
   - 'kube-system'
   - 'development'
   - 'production'

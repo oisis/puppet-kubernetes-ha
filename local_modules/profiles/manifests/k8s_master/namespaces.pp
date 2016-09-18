@@ -5,8 +5,8 @@
 # OiSiS (https://github.com/oisis/)
 #
 class profiles::k8s_master::namespaces (
-  $k8s_namespaces = hiera_array('progiles::kubernetes::k8s_namespaces'),
-  $k8s_create_namespaces  = hiera('progiles::kubernetes::k8s_create_namespaces'),
+  $k8s_namespaces = hiera_array('profiles::kubernetes::k8s_namespaces'),
+  $k8s_create_namespaces  = hiera('profiles::kubernetes::k8s_create_namespaces'),
 ){
   validate_array($k8s_namespaces)
   define create_namespaces{
