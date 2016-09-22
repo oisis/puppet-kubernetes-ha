@@ -46,4 +46,4 @@ mod 'puppet-kubernetes',
   :git => 'https://github.com/oisis/puppet-kubernetes',
   :ref => 'master'
 mod 'puppetlabs-haproxy'
-mod 'jfryman-nginx'
+mod 'jfryman-nginx', '0.3.0'
