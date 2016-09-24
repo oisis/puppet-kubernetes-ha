@@ -1,0 +1,27 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: gfs-<%= @fqdn %>
+  namespace: kube-system
+  labels:
+    name: gfs-<%= @fqdn %>
+spec:
+  hostNetwork: true
+  nodeSelector:
+    name: node1
+  containers:
+    - name: glusterfs
+      image: gluster/gluster-centos
+      ports:
+        - name: web
+          containerPort: 80
+      volumeMounts:
+          - name: brickpath
+            mountPath: "<%= scope.function_hiera(['profiles::kubernetes::gfs_volume_path']) %>"
+      securityContext:
+       capabilities: {}
+       privileged: true
+  volumes:
+    - name: brickpath
+      hostPath:
+        path: "<%= scope.function_hiera(['profiles::kubernetes::gfs_volume_path']) %>"
