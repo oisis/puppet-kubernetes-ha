@@ -25,6 +25,10 @@ profiles::kubernetes::k8s_namespaces:
 # Setup and run DNS server inside k8s cluster:
 
 # Setup and run GlusterFS server for PersistanceVolumes
+profiles::kubernetes::enable_gluster: 'true'
+profiles::kubernetes::gfs_volume_path: '/opt/glusterfs'
+profiles::kubernetes::volumes: 'vol01'
+profiles::kubernetes::quota_vol01: '10GB'
 
 # Setup and run PersistanceVolumes for pods
 
