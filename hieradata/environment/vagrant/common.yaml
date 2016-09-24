@@ -26,6 +26,9 @@ profiles::kubernetes::k8s_namespaces:
 
 # Setup and run GlusterFS server for PersistanceVolumes
 profiles::kubernetes::enable_gluster: 'true'
+profiles::kubernetes::gluster_nodes:
+  - 'k8s-node1.example.com'
+  - 'k8s-node2.example.com'
 profiles::kubernetes::gfs_volume_path: '/opt/glusterfs'
 profiles::kubernetes::volumes: 'vol01'
 profiles::kubernetes::quota_vol01: '10GB'
