@@ -1,14 +1,12 @@
 apiVersion: v1
 kind: Pod
 metadata:
-  name: gfs-<%= @fqdn %>
+  name: gfs
   namespace: kube-system
   labels:
-    name: gfs-<%= @fqdn %>
+    name: gfs
 spec:
   hostNetwork: true
-  nodeSelector:
-    name: node1
   containers:
     - name: glusterfs
       image: gluster/gluster-centos
