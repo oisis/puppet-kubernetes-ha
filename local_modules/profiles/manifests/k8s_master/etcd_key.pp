@@ -4,7 +4,7 @@
 # === Author
 # OiSiS (https://github.com/oisis/)
 #
-class profiles::k8s_node::etcd_key (){
+class profiles::k8s_master::etcd_key (){
   file{ '/root/check_etcd_key.sh':
     ensure  => 'file',
     owner   => 'root',
