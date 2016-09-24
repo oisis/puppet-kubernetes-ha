@@ -34,6 +34,7 @@ kubernetes::node::kubelet::kubelet_port: 10250
 kubernetes::node::kubelet::kubelet_reconcile_cidr: true
 kubernetes::node::kubelet::kubelet_register_node: true
 kubernetes::node::kubelet::kubelet_cluster_dns: '10.1.0.2'
+kubernetes::node::kubelet::kubelet_extra_args: '--config=/etc/kubernetes/manifests'
 
 # Kube Proxy options
 kubernetes::node::kube_proxy::kubeproxy_service_ensure: 'running'
