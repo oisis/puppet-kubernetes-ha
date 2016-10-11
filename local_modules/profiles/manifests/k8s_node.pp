@@ -8,10 +8,8 @@ class profiles::k8s_node (){
   include ::profiles::flannel
   include ::profiles::docker
   include ::profiles::kubernetes
-  include ::profiles::k8s_node::glusterfs
 
   Class['::profiles::docker']     ->
   Class['::profiles::flannel']    ->
-  Class['::profiles::kubernetes'] ->
-  Class['::profiles::k8s_node::glusterfs']
+  Class['::profiles::kubernetes']
 }
