@@ -1,7 +1,7 @@
 apiVersion: "v1"
 kind: "PersistentVolume"
 metadata:
-  name: "gluster-vol0001"
+  name: "gluster-vol01"
 spec:
   capacity:
     storage: "2Gi"
@@ -9,6 +9,6 @@ spec:
     - ReadWriteMany
   glusterfs:
     endpoints: "glusterfs-cluster"
-    path: "/mnt/brick1/vol0001"
+    path: "/mnt/brick1/vol01"
     readOnly: false
   persistentVolumeReclaimPolicy: "Recycle"
