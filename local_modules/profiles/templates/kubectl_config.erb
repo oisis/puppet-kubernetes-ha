@@ -1,0 +1,15 @@
+apiVersion: v1
+clusters:
+- cluster:
+    insecure-skip-tls-verify: true
+    server: http://<%= scope.function_hiera(['environment::vagrant::common::k8s_lb_address']) %>:8080
+  name: <%= scope.function_hiera(['environment::vagrant::common::k8s_lb_address']) %>:8080
+contexts:
+- context:
+    cluster: <%= scope.function_hiera(['environment::vagrant::common::k8s_lb_address']) %>:8080
+    user: ""
+  name: <%= scope.function_hiera(['environment::vagrant::common::k8s_lb_address']) %>:8080
+current-context: <%= scope.function_hiera(['environment::vagrant::common::k8s_lb_address']) %>:8080
+kind: Config
+preferences: {}
+users: []
