@@ -48,8 +48,8 @@ spec:
         args:
         # command = "/kube2sky"
         - --domain=cluster.local
-        - --kube-master-url=http://192.168.0.100:8080
-        - --etcd-server=http://192.168.0.100:4001
+        - --kube-master-url=http://<%= scope.function_hiera(['environment::vagrant::common::k8s_lb_ip']) %>:8080
+        - --etcd-server=http://<%= scope.function_hiera(['environment::vagrant::common::etcd_lb_ip']) %>:4001
       - name: skydns
         image: gcr.io/google_containers/skydns:2015-10-13-8c72f8c
         resources:
@@ -61,7 +61,7 @@ spec:
             memory: 50Mi
         args:
         # command = "/skydns"
-        - -machines=http://192.168.0.100:4001
+        - -machines=http://<%= scope.function_hiera(['environment::vagrant::common::etcd_lb_ip']) %>:4001
         - -addr=0.0.0.0:53
         - -ns-rotate=false
         - -domain=cluster.local.
