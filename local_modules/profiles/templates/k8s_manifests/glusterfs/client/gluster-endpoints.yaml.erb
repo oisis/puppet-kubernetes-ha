@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Endpoints
+metadata:
+  name: glusterfs
+  namespace: kube-system
+subsets:
+- addresses:
+<% @gluster_nodes.each do |val| -%>
+  - ip: <%= val %>
+<% end -%>
+  ports:
+  - port: 1
