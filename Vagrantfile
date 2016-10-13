@@ -24,6 +24,7 @@ cat > /etc/hosts <<EOF
 192.168.0.21 k8s-node2.example.com
 192.168.0.100 etcd.example.com
 192.168.0.100 k8s.example.com
+192.168.0.100 www.example.com
 192.168.0.100 lb.example.com
 192.168.0.200 test.example.com
 EOF

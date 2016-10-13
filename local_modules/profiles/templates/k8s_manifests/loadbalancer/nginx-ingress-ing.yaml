@@ -1,0 +1,35 @@
+---
+# https://github.com/nginxinc/kubernetes-ingress/tree/master/examples/complete-example
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: nginx-ingress
+  annotations:
+    nginx.org/proxy-connect-timeout: "10s"
+    nginx.org/proxy-read-timeout: "60s"
+    nginx.org/client-max-body-size: "256m"
+spec:
+# Uncoment this section if you need HTTPS support
+# and create secret with certs:
+# https://github.com/nginxinc/kubernetes-ingress/blob/master/examples/complete-example/cafe-secret.yaml
+#  tls:
+#  - hosts:
+#    - www.example.com
+#    secretName: ingress-secret
+  rules:
+  # Nginx virtual host name
+  # Address to reach pods
+  - host: www.example.com
+    http:
+      paths:
+        # Url: host/path - http://www.example.com/example-nginx1
+      - path: /example-nginx1
+        backend:
+          # Kubernetes Pod name
+          serviceName: example-nginx1
+          # Kubernetes Pod exposed IP
+          servicePort: 8000
+      - path: /jenkins
+        backend:
+          serviceName: jenkins
+          servicePort: 8080
