@@ -28,3 +28,4 @@ mkmf.log
 .librarian/
 Puppetfile.lock
 modules/
+.kube/
